@@ -1,3 +1,4 @@
+require 'hanna/rdoctask'
 
 begin
   require 'bones'
