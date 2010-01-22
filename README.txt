@@ -11,7 +11,10 @@ Wrapper for iw / iwconfig / iwlist / iwevent
 
 == SYNOPSIS:
 
-  FIXME (code sample of usage)
+  require 'iw'
+  interface = Iw::Config.new("wlan1")
+  status = interface.status
+  puts status
 
 == REQUIREMENTS:
 
