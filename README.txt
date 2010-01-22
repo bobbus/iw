@@ -1,14 +1,13 @@
 iw
-    by FIXME (your name)
-    FIXME (url)
+    by Thomas Gallaway
+	http://www.atomlab.us
 
 == DESCRIPTION:
 
-FIXME (describe your package)
+Wrapper for iw / iwconfig / iwlist / iwevent
 
 == FEATURES/PROBLEMS:
 
-* FIXME (list of features or problems)
 
 == SYNOPSIS:
 
@@ -16,7 +15,8 @@ FIXME (describe your package)
 
 == REQUIREMENTS:
 
-* FIXME (list of requirements)
+* linux (ubuntu)
+* iw (apt-get install iw)
 
 == INSTALL:
 
@@ -26,7 +26,7 @@ FIXME (describe your package)
 
 (The MIT License)
 
-Copyright (c) 2009 FIXME (different license?)
+Copyright (c) 2009 Thomas Gallaway
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
