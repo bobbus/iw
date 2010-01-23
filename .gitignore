@@ -12,8 +12,9 @@
 # exclude patterns (uncomment them if you want to use them):
 # *.[oa]
 # *~
-announcement.txt
+.DS_Store
+Announcement.txt
 coverage
 doc
 pkg
-._*
+*._*

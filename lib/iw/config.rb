@@ -185,30 +185,38 @@ module Iw
     # Returns the current device <tt>status</tt>
     # 
     def status      
-      output = iwconfig
+      @output = iwconfig
       return {
-        :retry_long_limit => output[/Retry\s+long\s+limit:(\d+)/, 1].to_i,
-        :power_management => boolval(output[/Power\s+Management:(\w+)/, 1]),
-        :essid => output[/ESSID:"(.*)"/, 1],
-        :mode => output[/Mode:(\w+)/, 1],
-        :frequency => output.scan(/Frequency:([\d\.]*)\s(\w{3})/).first,
-        :access_point => output[/Access Point:\s([\d\:a-fA-F]*)/, 1],
-        :bit_rate => output.scan(/Bit Rate=(\d+)\s([\w\/]+)/).first.map{|x| x =~ /\d+/ ? x.to_i : x},
-        :tx_power => output.scan(/Tx-Power=(\d+)\s(\w+)/).first.map{|x| x =~ /\d+/ ? x.to_i : x},
-        :rts_thr => boolval(output[/RTS\s+thr:(\w+)/, 1]),
-        :fragment_thr => boolval(output[/Fragment\s+thr:(\w+)/, 1]),
-        :link_quality => output.scan(/Link Quality=(\d{1,3})\/(\d{1,3})/).first.map{|x| x.to_i},
-        :signal_level => output.scan(/Signal\s+level=([-\d]+)\s(\w+)/).first.map{|x| x =~ /\d+/ ? x.to_i : x},
-        :rx_invalid_nwid => output[/Rx invalid nwid:(\d+)/, 1].to_i,
-        :rx_invalid_crypt => output[/Rx invalid crypt:(\d+)/, 1].to_i,
-        :rx_invalid_frag => output[/Rx invalid frag:(\d+)/, 1].to_i,
-        :tx_excessive_retries => output[/Tx excessive retries:(\d+)/, 1].to_i,
-        :invalid_misc => output[/Invalid misc:(\d+)/, 1].to_i,
-        :missed_beacon => output[/Missed beacon:(\d+)/, 1].to_i
+        :retry_long_limit => @output[/Retry\s+long\s+limit:(\d+)/, 1].to_i,
+        :power_management => boolval(@output[/Power\s+Management:(\w+)/, 1]),
+        :essid => @output[/ESSID:"(.*)"/, 1],
+        :mode => @output[/Mode:(\w+)/, 1],
+        :frequency => output_scan(/Frequency:([\d\.]*)\s(\w{3})/),
+        :access_point => @output[/Access Point:\s([\d\:a-fA-F]*)/, 1],
+        :bit_rate => output_scan(/Bit Rate=(\d+)\s([\w\/]+)/).map{|x| x =~ /\d+/ ? x.to_i : x},
+        :tx_power => output_scan(/Tx-Power=(\d+)\s(\w+)/).map{|x| x =~ /\d+/ ? x.to_i : x},
+        :rts_thr => boolval(@output[/RTS\s+thr:(\w+)/, 1]),
+        :fragment_thr => boolval(@output[/Fragment\s+thr:(\w+)/, 1]),
+        :link_quality => output_scan(/Link Quality=(\d{1,3})\/(\d{1,3})/).map{|x| x.to_i},
+        :signal_level => output_scan(/Signal\s+level=([-\d]+)\s(\w+)/).map{|x| x =~ /\d+/ ? x.to_i : x},
+        :rx_invalid_nwid => @output[/Rx invalid nwid:(\d+)/, 1].to_i,
+        :rx_invalid_crypt => @output[/Rx invalid crypt:(\d+)/, 1].to_i,
+        :rx_invalid_frag => @output[/Rx invalid frag:(\d+)/, 1].to_i,
+        :tx_excessive_retries => @output[/Tx excessive retries:(\d+)/, 1].to_i,
+        :invalid_misc => @output[/Invalid misc:(\d+)/, 1].to_i,
+        :missed_beacon => @output[/Missed beacon:(\d+)/, 1].to_i
       }
     end
     
     private
+    
+    def output_scan(regexp)
+      if ( values = @output.scan( regexp ) ) != []
+        return values.first
+      else
+        return [0, "MBit/s"]
+      end
+    end
     
     def iwconfig( values = "" )
       return `iwconfig #{@interface} #{values}`

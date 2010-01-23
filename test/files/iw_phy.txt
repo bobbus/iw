@@ -1,0 +1,39 @@
+Wiphy phy0
+	Band 1:
+		Frequencies:
+			* 2412 MHz [1] (18.0 dBm)
+			* 2417 MHz [2] (18.0 dBm)
+			* 2422 MHz [3] (18.0 dBm)
+			* 2427 MHz [4] (18.0 dBm)
+			* 2432 MHz [5] (18.0 dBm)
+			* 2437 MHz [6] (18.0 dBm)
+			* 2442 MHz [7] (18.0 dBm)
+			* 2447 MHz [8] (18.0 dBm)
+			* 2452 MHz [9] (18.0 dBm)
+			* 2457 MHz [10] (18.0 dBm)
+			* 2462 MHz [11] (18.0 dBm)
+			* 2467 MHz [12] (18.0 dBm) (passive scanning, no IBSS)
+			* 2472 MHz [13] (20.0 dBm) (passive scanning, no IBSS)
+			* 2484 MHz [14] (20.0 dBm) (passive scanning, no IBSS)
+		Bitrates:
+			* 1.0 Mbps
+			* 2.0 Mbps (short preamble supported)
+			* 5.5 Mbps (short preamble supported)
+			* 11.0 Mbps (short preamble supported)
+			* 6.0 Mbps
+			* 9.0 Mbps
+			* 12.0 Mbps
+			* 18.0 Mbps
+			* 24.0 Mbps
+			* 36.0 Mbps
+			* 48.0 Mbps
+			* 54.0 Mbps
+	max # scan SSIDs: 4
+	Supported interface modes:
+		 * IBSS
+		 * managed
+		 * AP
+		 * AP/VLAN
+		 * WDS
+		 * monitor
+		 * mesh point

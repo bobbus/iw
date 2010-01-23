@@ -1,0 +1,4 @@
+phy#0
+	Interface wlan1
+		ifindex 4
+		type managed
